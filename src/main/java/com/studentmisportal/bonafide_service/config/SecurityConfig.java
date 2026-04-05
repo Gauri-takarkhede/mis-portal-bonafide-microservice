@@ -36,7 +36,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(Customizer.withDefaults())
+//                .cors(Customizer.withDefaults())
+                .cors(cors -> cors.disable())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
@@ -68,20 +69,20 @@ public class SecurityConfig {
         return RoleHierarchyImpl.fromHierarchy("ROLE_FACULTY > ROLE_STUDENT");
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-
-        CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.setAllowedOrigins(List.of(frontendUrl));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-
-        return source;
-    }
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//
+//        CorsConfiguration configuration = new CorsConfiguration();
+//
+//        configuration.setAllowedOrigins(List.of(frontendUrl));
+//        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+//        configuration.setAllowedHeaders(List.of("*"));
+//        configuration.setAllowCredentials(true);
+//
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//
+//        return source;
+//    }
 }
 
